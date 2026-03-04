@@ -16,3 +16,8 @@
 ### Next.js
 - [Next.js 외부 이미지 불러오기](./nextjs/nextjs 외부 이미지 불러오기.md)
 - [MDX Styled Code 적용하기](./nextjs/mdx-styled-code.md)
+
+### Advanced Tools & Languages
+- [TypeScript 기초와 필요성](./TypeScript/TypeScript 기초와 필요성.md)
+- [Zustand와 Pinia 현대적 상태 관리](./StateManagement/Zustand와 Pinia 현대적 상태 관리.md)
+- [Tailwind CSS 디자인 가이드](./Styling/Tailwind CSS 디자인 가이드.md)
