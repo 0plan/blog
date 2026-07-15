@@ -6,11 +6,46 @@ Vite는 현대 웹 개발을 위한 빠르고 경량의 빌드 도구입니다. 
 
 1. **빠른 시작 및 빌드**: Vite는 ES 모듈을 사용하여 개발 서버를 실행할 때, 실제 번들링 없이 파일을 즉시 제공하므로 매우 빠른 시작 시간을 자랑합니다.
 
+기존 번들러 방식과 Vite의 네이티브 ESM 방식의 차이는 다음과 같습니다.
+
+```mermaid
+flowchart LR
+    subgraph 기존["기존 번들러(Webpack 등)"]
+        A1[소스 코드 전체] --> A2[번들링] --> A3[하나의 번들 파일] --> A4[브라우저에 전달]
+    end
+
+    subgraph Vite["Vite 개발 서버"]
+        B1[브라우저 요청] --> B2["필요한 모듈만 즉시 변환<br/>(esbuild)"] --> B3[네이티브 ES 모듈로 응답]
+    end
+```
+
 2. **핫 모듈 교체(HMR)**: Vite의 강력한 HMR 기능은 코드 변경 시 전체 페이지를 새로 고치지 않고도 즉시 변경 사항을 반영할 수 있습니다. 이를 통해 개발자는 더 빠르고 효율적인 개발 경험을 누릴 수 있습니다.
 
-3. **최적화된 프로덕션 빌드**: Vite는 Rollup을 기반으로 한 최적화된 빌드를 제공하여, 프로덕션 환경에 맞게 자산을 효율적으로 번들링하고 압축합니다.
+3. **최적화된 프로덕션 빌드**: Vite는 Rollup을 기반으로 한 최적화된 빌드를 제공하여, 프로덕션 환경에 맞게 자산을 효율적으로 번들링하고 압축합니다. 즉, 개발 모드와 빌드 모드에서 서로 다른 도구를 사용합니다.
 
-4. **플러그인 시스템**: Vite는 다양한 플러그인을 통해 기능을 확장할 수 있습니다. 공식 플러그인뿐만 아니라 커뮤니티에서 제공하는 플러그인도 많아 유연한 설정이 가능합니다.
+```mermaid
+flowchart TD
+    Start[Vite 명령 실행] --> Mode{모드 선택}
+    Mode -->|npm run dev| Dev[개발 서버]
+    Dev --> Esbuild["esbuild로 의존성 사전 번들링<br/>+ 네이티브 ESM 제공"]
+    Esbuild --> HMR[빠른 HMR]
+
+    Mode -->|npm run build| Build[프로덕션 빌드]
+    Build --> Rollup["Rollup으로 번들링<br/>+ 트리쉐이킹/압축"]
+    Rollup --> Output[최적화된 정적 자산]
+```
+
+4. **플러그인 시스템**: Vite는 다양한 플러그인을 통해 기능을 확장할 수 있습니다. 공식 플러그인뿐만 아니라 커뮤니티에서 제공하는 플러그인도 많아 유연한 설정이 가능합니다. 예를 들어 React 프로젝트라면 `vite.config.js`에 다음과 같이 플러그인을 추가합니다.
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+})
+```
 
 5. **프레임워크 지원**: Vite는 Vue.js, React, Preact 등 다양한 프레임워크와 호환됩니다. 또한, Vanilla JS 프로젝트에도 쉽게 적용할 수 있습니다.
 

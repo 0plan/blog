@@ -6,6 +6,33 @@
 
 ## 1. 도구별 핵심 컨셉
 
+세 도구 모두 결국 JDBC 위에서 동작하지만, 애플리케이션 코드와 SQL 사이의 관계를 다루는 방식이 근본적으로 다릅니다.
+
+```mermaid
+flowchart TB
+    App[애플리케이션 코드]
+
+    subgraph JPA_Path["JPA (Hibernate)"]
+        Entity[Entity 객체 / JPQL]
+    end
+    subgraph MyBatis_Path["MyBatis"]
+        XML[XML / Annotation SQL]
+    end
+    subgraph jOOQ_Path["jOOQ"]
+        DSL[Java DSL 코드]
+    end
+
+    App --> Entity
+    App --> XML
+    App --> DSL
+
+    Entity -->|SQL 자동 생성| JDBC[JDBC]
+    XML -->|개발자가 작성한 SQL| JDBC
+    DSL -->|컴파일 타임 검증된 SQL 생성| JDBC
+
+    JDBC --> DB[(데이터베이스)]
+```
+
 ### **JPA (Hibernate): "객체 중심의 추상화"**
 *   **유형:** ORM (Object-Relational Mapping)
 *   **철학:** 데이터베이스 테이블을 자바 객체로 매핑하여, 개발자가 SQL을 직접 작성하지 않고 객체 모델로 비즈니스 로직을 구현하게 합니다.
@@ -36,6 +63,19 @@
 ---
 
 ## 3. 기술적 고찰: 어떤 도구가 어울릴까?
+
+프로젝트의 성격에 따라 아래와 같은 흐름으로 도구를 선택해 볼 수 있습니다.
+
+```mermaid
+flowchart TD
+    Start{프로젝트 성격은?} --> Q1{도메인 모델 중심의<br/>표준 CRUD가 대부분인가?}
+    Q1 -->|Yes| JPA["JPA (Hibernate)"]
+    Q1 -->|No| Q2{DBA가 SQL을 직접 관리하거나<br/>레거시 SQL 자산이 많은가?}
+    Q2 -->|Yes| MyBatis[MyBatis]
+    Q2 -->|No| Q3{복잡한 통계/조회 쿼리를<br/>타입 안정성 있게 작성해야 하는가?}
+    Q3 -->|Yes| jOOQ[jOOQ]
+    Q3 -->|No| Hybrid["JPA + jOOQ 혼합"]
+```
 
 ### **✅ 이런 프로젝트에는 'JPA'**
 *   **성격:** 표준적인 도메인 모델 기반의 웹 서비스, 빠르게 프로토타입을 만들어야 하는 스타트업.

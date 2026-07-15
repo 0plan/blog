@@ -13,6 +13,26 @@
 *   **단점:** 실시간 통신을 위해 '폴링(Polling)' 방식을 써야 하므로 서버 부하가 크고 헤더 오버헤드가 발생합니다.
 *   **주요 용도:** 일반적인 웹 서핑, 문서/이미지 전송, 일반적인 데이터 API.
 
+매 요청마다 연결을 새로 맺고 끊는 흐름은 아래와 같습니다.
+
+```mermaid
+sequenceDiagram
+    participant C as 클라이언트
+    participant S as 서버
+
+    C->>S: 요청 (Request)
+    activate S
+    S-->>C: 응답 (Response)
+    deactivate S
+    Note over C,S: 연결 종료
+
+    C->>S: 요청 (Request)
+    activate S
+    S-->>C: 응답 (Response)
+    deactivate S
+    Note over C,S: 연결 종료
+```
+
 ---
 
 ## 2. WebSocket (웹소켓)
@@ -24,6 +44,26 @@ HTML5 표준의 일부로 도입된 **전이중(Full-Duplex)** 양방향 통신 
 *   **단점:** 연결을 계속 유지해야 하므로 동시 접속자가 많을 때 서버 메모리 부담이 큽니다.
 *   **주요 용도:** 실시간 채팅, 주식 시세 대시보드, 멀티플레이어 게임.
 
+HTTP 핸드셰이크로 연결을 업그레이드한 후, 연결이 끊길 때까지 양방향으로 자유롭게 메시지를 주고받습니다.
+
+```mermaid
+sequenceDiagram
+    participant C as 클라이언트
+    participant S as 서버
+
+    C->>S: HTTP GET (Upgrade: websocket)
+    S-->>C: 101 Switching Protocols
+    Note over C,S: 연결 유지 (Persistent Connection)
+
+    C->>S: 메시지 전송
+    S-->>C: 메시지 전송 (서버가 먼저 보낼 수도 있음)
+    S-->>C: 메시지 전송
+    C->>S: 메시지 전송
+
+    C->>S: Close Frame
+    S-->>C: Close Frame
+```
+
 ---
 
 ## 3. MQTT (Message Queuing Telemetry Transport)
@@ -34,6 +74,21 @@ HTML5 표준의 일부로 도입된 **전이중(Full-Duplex)** 양방향 통신 
 *   **장점:** 헤더가 매우 작고(최소 2바이트), 저전력/저대역폭 환경에 최적화되어 있습니다. QoS(전송 품질 보장) 옵션을 제공합니다.
 *   **단점:** 중앙 브로커 관리가 필요하며, 일반적인 웹 브라우저에서는 직접 지원하지 않아 라이브러리가 필요합니다.
 *   **주요 용도:** IoT 기기 제어(스마트홈), 센서 데이터 수집, 모바일 알림(Push).
+
+발행자와 구독자는 서로를 직접 알 필요 없이 브로커를 통해 토픽(Topic) 단위로 메시지를 주고받습니다.
+
+```mermaid
+flowchart LR
+    P1["발행자<br/>(온도 센서)"] -->|"PUBLISH<br/>topic: home/temp"| B((브로커))
+    P2["발행자<br/>(습도 센서)"] -->|"PUBLISH<br/>topic: home/humidity"| B
+
+    B -->|"메시지 전달<br/>topic: home/temp"| S1["구독자<br/>(모바일 앱)"]
+    B -->|"메시지 전달<br/>topic: home/temp"| S2["구독자<br/>(대시보드)"]
+    B -->|"메시지 전달<br/>topic: home/humidity"| S2
+
+    S1 -.->|"SUBSCRIBE home/temp"| B
+    S2 -.->|"SUBSCRIBE home/#"| B
+```
 
 ---
 

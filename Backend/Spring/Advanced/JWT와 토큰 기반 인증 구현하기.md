@@ -20,6 +20,27 @@ JWT는 점(`.`)으로 구분된 세 부분으로 구성됩니다.
 3.  **요청:** 클라이언트는 이후 모든 요청의 `Authorization` 헤더에 `Bearer <Token>`을 넣어 보냄.
 4.  **검증:** 서버는 서명을 확인하고, 유효하면 요청을 처리.
 
+아래는 로그인부터 API 요청/검증까지의 흐름을 나타낸 시퀀스 다이어그램입니다.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Server: 1. 로그인 요청 (ID/PW)
+    Server->>Server: 2. 사용자 인증 및 JWT 생성
+    Server-->>Client: 3. JWT 응답
+    Client->>Client: 4. 토큰 저장 (예: 로컬 스토리지)
+
+    Client->>Server: 5. API 요청 (Authorization: Bearer <Token>)
+    Server->>Server: 6. 서명 검증 및 만료 확인
+    alt 토큰 유효
+        Server-->>Client: 7. 요청 처리 결과 응답
+    else 토큰 무효/만료
+        Server-->>Client: 7. 401 Unauthorized
+    end
+```
+
 ---
 
 ## 3. Spring Boot에서 JWT 구현 (핵심 코드)
@@ -48,6 +69,26 @@ public String createToken(String userPk, List<String> roles) {
 1.  **민감 정보 금지:** 페이로드는 누구나 디코딩할 수 있으므로 비밀번호 같은 정보는 절대 넣지 마세요.
 2.  **만료 시간 설정:** 토큰이 탈취될 경우를 대비해 Access Token의 수명은 짧게(예: 30분) 설정하고, Refresh Token을 병행 사용하세요.
 3.  **Secret Key 보안:** 비밀키가 유출되면 전체 보안이 무너집니다. 반드시 환경 변수나 Secret Manager로 관리하세요.
+
+Access Token이 만료되었을 때 Refresh Token으로 재발급받는 흐름은 다음과 같습니다.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Server: API 요청 (만료된 Access Token)
+    Server-->>Client: 401 Unauthorized (Access Token 만료)
+    Client->>Server: 토큰 재발급 요청 (Refresh Token)
+    Server->>Server: Refresh Token 유효성 검증
+    alt Refresh Token 유효
+        Server-->>Client: 새 Access Token 발급
+        Client->>Server: API 재요청 (새 Access Token)
+        Server-->>Client: 요청 처리 결과 응답
+    else Refresh Token 무효/만료
+        Server-->>Client: 재로그인 요구
+    end
+```
 
 ---
 

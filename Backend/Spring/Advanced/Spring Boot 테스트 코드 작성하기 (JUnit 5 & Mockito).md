@@ -9,6 +9,18 @@
 *   **단위 테스트(Unit Test):** 하나의 메소드나 클래스를 독립적으로 테스트합니다. 외부 의존성(DB 등)은 가짜 객체(Mock)로 대체하여 매우 빠르게 실행됩니다.
 *   **통합 테스트(Integration Test):** 스프링 컨테이너를 실제로 띄워 여러 컴포넌트 간의 상호작용을 테스트합니다. 실제 DB 연동까지 검증합니다.
 
+두 테스트가 애플리케이션의 어느 계층까지 검증 범위에 포함하는지 비교하면 다음과 같습니다.
+
+```mermaid
+flowchart LR
+    subgraph 단위 테스트
+        A1[Service] -.Mock.-> A2[Repository]
+    end
+    subgraph 통합 테스트
+        B1[Controller] --> B2[Service] --> B3[Repository] --> B4[(DB)]
+    end
+```
+
 ---
 
 ## 2. 단위 테스트 작성하기 (Mockito 활용)
@@ -46,7 +58,28 @@ class UserServiceTest {
 
 ## 3. 통합 테스트 작성하기 (@SpringBootTest)
 
-API 컨트롤러부터 데이터베이스까지 전체 흐름을 테스트합니다.
+API 컨트롤러부터 데이터베이스까지 전체 흐름을 테스트합니다. `MockMvc`가 실제 HTTP 요청을 흉내 내어 컨트롤러에 전달하고, 이후 서비스와 리포지토리를 거쳐 응답이 반환되는 과정은 다음과 같습니다.
+
+```mermaid
+sequenceDiagram
+    participant T as Test
+    participant M as MockMvc
+    participant C as Controller
+    participant S as Service
+    participant R as Repository
+    participant DB as DB
+
+    T->>M: perform(get("/api/users/1"))
+    M->>C: HTTP 요청 시뮬레이션
+    C->>S: getUser(1)
+    S->>R: findById(1)
+    R->>DB: SELECT * FROM user
+    DB-->>R: 결과 반환
+    R-->>S: User
+    S-->>C: UserDto
+    C-->>M: 200 OK + JSON
+    M-->>T: andExpect(...)
+```
 
 ```java
 @SpringBootTest

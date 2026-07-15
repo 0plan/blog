@@ -8,6 +8,23 @@
 
 가장 큰 차이점은 데이터가 저장되고 관리되는 방식, 즉 **중앙집중형(Centralized)**과 **분산형(Distributed)**의 차이입니다.
 
+**SVN과 Git의 구조 비교**
+
+```mermaid
+flowchart LR
+    subgraph SVN["SVN: 중앙집중형"]
+        Server[(중앙 서버<br/>전체 히스토리)]
+        Dev1["개발자 A<br/>Working Copy"] -->|Commit / Update| Server
+        Dev2["개발자 B<br/>Working Copy"] -->|Commit / Update| Server
+    end
+
+    subgraph Git["Git: 분산형"]
+        Remote[(원격 저장소<br/>전체 히스토리)]
+        Local1["개발자 A<br/>로컬 저장소<br/>(전체 히스토리 보유)"] -->|Push / Pull| Remote
+        Local2["개발자 B<br/>로컬 저장소<br/>(전체 히스토리 보유)"] -->|Push / Pull| Remote
+    end
+```
+
 ### **SVN: 중앙집중형 (CVCS)**
 *   **구조:** 하나의 중앙 서버에 전체 프로젝트의 히스토리가 저장됩니다.
 *   **방식:** 개발자는 서버에서 특정 버전의 코드(Working Copy)만 내려받아(Check-out) 작업하고, 변경 사항을 다시 서버에 보냅니다(Commit).
@@ -27,6 +44,21 @@ SVN은 파일의 기본 버전과 그 이후의 **차이점(Delta)**을 저장�
 
 ### **Git: Snapshot 방식**
 Git은 파일을 차이점이 아닌 **스냅샷(Snapshot)**으로 관리합니다. 커밋할 때마다 파일 시스템 전체의 상태를 사진 찍듯 저장하며, 변경되지 않은 파일은 새로 저장하지 않고 이전 파일에 대한 링크만 유지합니다. 이 방식은 버전 전환과 비교 연산이 매우 빠릅니다.
+
+**Delta 방식과 Snapshot 방식의 차이**
+
+```mermaid
+flowchart TD
+    subgraph SVNDelta["SVN 방식: Delta"]
+        V0["초기 버전"] --> D1["차이점 1"] --> D2["차이점 2"] --> D3["차이점 3"]
+        D3 -.순차 적용 필요.-> R1["버전 3 재구성"]
+    end
+
+    subgraph GitSnapshot["Git 방식: Snapshot"]
+        S1["커밋 1<br/>전체 스냅샷"] --> S2["커밋 2<br/>변경 파일만 새로 저장<br/>(나머지는 링크)"]
+        S2 --> S3["커밋 3<br/>변경 파일만 새로 저장<br/>(나머지는 링크)"]
+    end
+```
 
 ---
 

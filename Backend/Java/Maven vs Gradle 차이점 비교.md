@@ -72,6 +72,21 @@ flowchart LR
 *   안드로이드 앱을 개발할 때.
 *   빌드 과정을 세밀하게 커스텀해야 하는 복잡한 멀티 모듈 프로젝트일 때.
 
+**빌드 도구 선택 흐름도**
+
+```mermaid
+flowchart TD
+    A[빌드 도구 선택] --> B{안드로이드 앱인가?}
+    B -->|Yes| Gradle1[Gradle 선택]
+    B -->|No| C{보수적인 기업/금융권 환경인가?}
+    C -->|Yes| Maven1[Maven 선택]
+    C -->|No| D{빌드 속도와 커스터마이징이 중요한가?}
+    D -->|Yes| Gradle2[Gradle 선택]
+    D -->|No| E{팀이 XML 기반 정형화 구조를 선호하는가?}
+    E -->|Yes| Maven2[Maven 선택]
+    E -->|No| Gradle3[Gradle 선택 - 업계 표준]
+```
+
 ---
 
 ## 5. 결론

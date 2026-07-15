@@ -2,6 +2,27 @@
 
 Frontend Bundler는 웹 애플리케이션의 여러 자산(HTML, CSS, JavaScript 파일 등)을 하나의 파일 또는 몇 개의 파일로 묶어주는 도구입니다. 이러한 과정을 통해 웹 애플리케이션의 로드 속도를 개선하고, 코드 관리를 쉽게 할 수 있습니다.
 
+**번들링 과정 예시**
+
+```mermaid
+flowchart LR
+    subgraph 입력["소스 코드"]
+        A[entry.js]
+        B[componentA.js]
+        C[style.css]
+        D[image.png]
+    end
+
+    A --> E["Bundler<br/>(의존성 분석 · 변환 · 최적화)"]
+    B --> E
+    C --> E
+    D --> E
+
+    E --> F[bundle.js]
+    E --> G[bundle.css]
+    E --> H[assets/]
+```
+
 ### 주요 기능
 
 1. **모듈화**: Bundler는 코드의 모듈화를 지원하여, 개발자가 필요한 파일만 선택적으로 불러올 수 있게 합니다. 이를 통해 유지보수성과 가독성을 높입니다.

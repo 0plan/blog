@@ -34,6 +34,17 @@ Flutter는 세 가지 주요 레이어로 구성됩니다:
 3. **Framework Layer**  
     Dart로 작성된 고수준 API를 제공하며, 애니메이션, 제스처, 레이아웃 등의 기능을 지원합니다. Material 및 Cupertino 디자인 시스템도 포함되어 있어 다양한 스타일의 앱 제작이 가능합니다.
     
+Framework Layer가 Dart 코드로 작성한 위젯 트리를 다루고, 이를 Engine Layer가 실제 화면에 렌더링하며, Embedder Layer가 각 플랫폼(OS)과의 연결을 담당하는 구조입니다.
+
+```mermaid
+flowchart TD
+    A["Framework Layer (Dart)<br/>Widgets, Material/Cupertino, 애니메이션, 제스처"]
+    B["Engine Layer (C++)<br/>Skia 렌더링, Dart 런타임"]
+    C["Embedder Layer (플랫폼별)<br/>Android / iOS / Windows / macOS / Linux / Web"]
+    D[운영체제 및 플랫폼 서비스]
+
+    A --> B --> C --> D
+```
 
 ## Flutter의 장단점
 
@@ -51,6 +62,16 @@ Flutter는 세 가지 주요 레이어로 구성됩니다:
 ## 사용해보기
 Flutter로 앱을 개발하기 위해 필요한 환경 설정과 기본적인 사용법을 단계별로 알아보겠습니다.
 
+```mermaid
+flowchart LR
+    A[개발 환경 설정<br/>SDK + IDE] --> B[flutter create<br/>프로젝트 생성]
+    B --> C[flutter run<br/>앱 실행]
+    C --> D[코드 수정 및<br/>위젯 변경]
+    D --> E[Hot Reload<br/>'r' 입력]
+    E --> D
+    D --> F[flutter pub get<br/>패키지 추가]
+```
+
 ### 1. 개발 환경 설정
 
 #### a. Flutter SDK 설치
@@ -60,6 +81,8 @@ Flutter로 앱을 개발하기 위해 필요한 환경 설정과 기본적인 �
 
 #### b. IDE 설치
 - Flutter는 여러 IDE와 호환되지만, **Android Studio** 또는 **Visual Studio Code**를 추천합니다. 둘 다 Flutter와 Dart 플러그인을 설치하여 사용할 수 있습니다.
+
+<!-- TODO: 실제 스크린샷 추가 필요 (예: VS Code 확장 마켓플레이스에서 Flutter/Dart 플러그인 설치 화면) -->
 
 ### 2. Flutter 프로젝트 생성
 

@@ -6,7 +6,27 @@
 
 ## 1. 상태 관리란 무엇인가?
 
-애플리케이션에서 여러 컴포넌트가 함께 사용하는 공유 데이터(사용자 정보, 테마, 장바구니 등)를 효율적으로 관리하는 것을 말합니다.
+애플리케이션에서 여러 컴포넌트가 함께 사용하는 공유 데이터(사용자 정보, 테마, 장바구니 등)를 효율적으로 관리하는 것을 말합니다. Prop Drilling 방식과 중앙 스토어 방식을 비교하면 아래와 같습니다.
+
+**Prop Drilling(왼쪽) vs 중앙 스토어(오른쪽) 비교**
+```mermaid
+flowchart TB
+    subgraph Drilling["Prop Drilling"]
+        direction TB
+        A1[App] -->|props| B1[Layout]
+        B1 -->|props| C1[Sidebar]
+        C1 -->|props| D1[UserMenu]
+    end
+
+    subgraph Store["중앙 스토어 패턴"]
+        direction TB
+        S[(Zustand / Pinia Store)]
+        A2[App] --- S
+        B2[Layout] --- S
+        C2[Sidebar] --- S
+        D2[UserMenu] --- S
+    end
+```
 
 ---
 
@@ -35,6 +55,21 @@ function Counter() {
     </div>
   );
 }
+```
+
+Zustand는 React Context나 Provider 트리 없이, 컴포넌트가 스토어를 직접 구독(subscribe)하는 방식으로 동작합니다. 상태가 바뀌면 해당 값을 구독 중인 컴포넌트만 리렌더링되므로 불필요한 렌더링을 줄일 수 있습니다.
+
+**Zustand의 구독 기반 데이터 흐름**
+```mermaid
+sequenceDiagram
+    participant Comp as Counter 컴포넌트
+    participant Store as useStore (Zustand)
+
+    Comp->>Store: useStore()로 상태 구독
+    Store-->>Comp: count 초기값 반환
+    Comp->>Store: increase() 액션 호출
+    Store->>Store: set()으로 상태 업데이트
+    Store-->>Comp: 변경된 count 값 통지 (리렌더링)
 ```
 
 ---

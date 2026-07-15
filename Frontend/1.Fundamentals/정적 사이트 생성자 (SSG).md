@@ -2,13 +2,36 @@
 
 정적 사이트 생성(SSG, Static Site Generation)은 웹 페이지가 빌드 타임에 미리 렌더링되어 정적 HTML 파일로 생성되는 방식입니다. 사용자가 요청할 때마다 서버에서 동적으로 페이지를 생성하는 것이 아니라, 미리 생성된 HTML 파일을 제공하여 성능을 극대화합니다.
 
+빌드 타임과 요청 타임의 역할이 어떻게 분리되는지는 아래 흐름도로 보면 이해하기 쉽습니다.
+
+```mermaid
+flowchart LR
+    subgraph BUILD["빌드 타임 (Build Time)"]
+        A[Markdown / JSON / CMS 데이터] --> B[SSG 빌드 프로세스]
+        B --> C[정적 HTML/CSS/JS 파일]
+    end
+    subgraph REQUEST["요청 타임 (Request Time)"]
+        D[사용자 요청] --> E[CDN / 웹 서버]
+        E --> F[미리 생성된 HTML 즉시 응답]
+    end
+    C --> E
+```
+
 ### 주요 개념
 
 1. **빌드 타임 렌더링**: SSG에서는 콘텐츠가 정적으로 생성됩니다. 빌드 시점에 모든 페이지가 렌더링되어 HTML 파일로 저장되며, 이 파일들은 웹 서버에 배포됩니다.
 
 2. **정적 파일 제공**: 사용자가 웹 페이지에 접근하면, 서버는 미리 생성된 HTML 파일을 즉시 제공합니다. 이 과정에서 서버는 단순히 파일을 전달하는 역할을 하므로 빠른 응답 속도를 자랑합니다.
 
-3. **데이터 소스**: SSG는 주로 Markdown 파일, JSON, CMS 등과 같은 데이터 소스에서 콘텐츠를 불러와 페이지를 생성합니다. 이러한 데이터 소스가 변경될 경우, 사이트를 다시 빌드해야 합니다.
+3. **데이터 소스**: SSG는 주로 Markdown 파일, JSON, CMS 등과 같은 데이터 소스에서 콘텐츠를 불러와 페이지를 생성합니다. 이러한 데이터 소스가 변경될 경우, 사이트를 다시 빌드해야 합니다. 예를 들어 Next.js에서는 아래와 같이 빌드 타임에 데이터를 읽어와 정적 페이지로 만듭니다.
+
+```jsx
+// Next.js 예시: 빌드 타임에 실행되어 정적 HTML로 변환됨
+export async function getStaticProps() {
+  const posts = await fetch('https://api.example.com/posts').then((res) => res.json());
+  return { props: { posts } };
+}
+```
 
 ### 장점
 

@@ -10,6 +10,35 @@
 
 3. **단일 페이지 애플리케이션(SPA)**: CSR은 주로 SPA에서 사용되며, 페이지 전환 시 전체 페이지를 새로 로드하는 대신, 필요한 데이터만 서버에서 받아와 기존 페이지를 업데이트합니다.
 
+초기 로딩 시 서버가 내려주는 HTML은 대개 아래와 같이 빈 껍데기 형태이며, 이후 JavaScript 번들이 이 안에 실제 콘텐츠를 채워 넣습니다.
+
+```html
+<!-- 서버가 최초로 응답하는 index.html -->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+    <script src="/bundle.js"></script>
+  </body>
+</html>
+```
+
+CSR의 전체 흐름을 요청/응답 관점에서 표현하면 다음과 같습니다.
+
+```mermaid
+sequenceDiagram
+    participant B as 브라우저
+    participant S as 서버
+    participant A as API 서버
+
+    B->>S: 1. 페이지 요청
+    S-->>B: 2. 빈 HTML + JS 번들 응답
+    B->>B: 3. JavaScript 다운로드 및 실행
+    B->>A: 4. 데이터 API 호출
+    A-->>B: 5. JSON 데이터 응답
+    B->>B: 6. DOM 렌더링 (화면 표시)
+```
+
 ### 장점
 
 1. **빠른 사용자 경험**: 한 번 로드된 후, 페이지 전환이 매우 빠르며, 사용자에게 원활한 경험을 제공합니다. JavaScript가 DOM을 업데이트하기 때문에 전체 페이지를 다시 로드할 필요가 없습니다.

@@ -14,6 +14,14 @@
     *   특정 코딩 스타일 강제 (예: `var` 대신 `let`, `const` 권장).
 *   **핵심 철학:** "코드가 올바르게 동작하는가?"에 집중합니다.
 
+**예시:** 아래처럼 선언 후 사용하지 않는 변수가 있으면 ESLint가 경고를 띄웁니다.
+```javascript
+function greet(name) {
+  const unusedVar = "hello"; // ESLint: 'unusedVar' is defined but never used
+  console.log(name);
+}
+```
+
 ---
 
 ## 2. Prettier: "코드의 미적 일관성을 담당"
@@ -42,6 +50,20 @@
 ---
 
 ## 4. 이 도구들을 왜 함께 쓰나요? (협업 시너지)
+
+세 도구는 겹치지 않는 시점에 각자의 역할을 수행하며 하나의 개발 파이프라인을 이룹니다.
+
+```mermaid
+flowchart TD
+    A[소스 코드 작성] --> B[IDE 저장 시]
+    B --> C[ESLint: 코드 품질 검사]
+    B --> D[Prettier: 포맷팅 자동 교정]
+    C --> E[Git Commit]
+    D --> E
+    E --> F[빌드 프로세스]
+    F --> G[Babel: 최신 문법을 구형 브라우저 호환 코드로 변환]
+    G --> H[번들링 및 배포]
+```
 
 | 구분 | ESLint | Prettier | Babel |
 | :--- | :--- | :--- | :--- |

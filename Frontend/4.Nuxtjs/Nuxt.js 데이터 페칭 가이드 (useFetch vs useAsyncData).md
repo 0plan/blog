@@ -8,6 +8,23 @@ Nuxt 3에서는 서버 사이드 렌더링(SSR) 환경에 최적화된 데이터
 
 전통적인 방식(Axios 등)을 사용하면 클라이언트와 서버에서 데이터 요청이 중복으로 발생할 수 있습니다. Nuxt의 페칭 API는 **데이터 하이드레이션(Hydration)**을 지원하여 서버에서 가져온 데이터를 클라이언트에 안전하게 전달하고 중복 호출을 막습니다.
 
+아래는 서버에서 가져온 데이터가 클라이언트로 전달되어 중복 호출을 막는 흐름입니다.
+
+```mermaid
+sequenceDiagram
+    participant Browser as 브라우저
+    participant Server as Nuxt 서버 (SSR)
+    participant API as API 서버
+
+    Browser->>Server: 페이지 요청
+    Server->>API: useFetch/useAsyncData 호출
+    API-->>Server: 데이터 응답
+    Server->>Server: 데이터를 payload에 직렬화
+    Server-->>Browser: HTML + 직렬화된 데이터 전달
+    Browser->>Browser: 클라이언트에서 하이드레이션
+    Note over Browser: payload 재사용으로<br/>동일 요청 재호출 안 함
+```
+
 ---
 
 ## 2. useFetch vs useAsyncData
@@ -24,13 +41,36 @@ const { data, pending, error, refresh } = await useFetch('/api/users')
 const { data } = await useAsyncData('unique-key', () => $fetch('/api/users'))
 ```
 
+둘 중 무엇을 선택할지 고민된다면 아래 흐름을 참고하세요.
+
+```mermaid
+flowchart TD
+    A["데이터를 가져와야 한다"] --> B{"단순 URL 호출인가?"}
+    B -- "예" --> C["useFetch 사용"]
+    B -- "아니오" --> D{"GraphQL/SDK 등<br/>외부 로직이 필요한가?"}
+    D -- "예" --> E["useAsyncData 사용"]
+    D -- "아니오" --> F{"여러 요청을 조합해야 하는가?"}
+    F -- "예" --> E
+    F -- "아니오" --> C
+```
+
 ---
 
 ## 3. 주요 옵션 활용법
 
 *   **`pick`:** 응답 데이터 중 필요한 필드만 골라서 가져옵니다. (성능 최적화)
+    ```javascript
+    const { data } = await useFetch('/api/users', { pick: ['id', 'name'] })
+    ```
 *   **`watch`:** 특정 반응형 데이터가 변할 때 자동으로 데이터를 다시 불러옵니다.
+    ```javascript
+    const page = ref(1)
+    const { data } = await useFetch('/api/users', { watch: [page] })
+    ```
 *   **`server: false`:** 특정 데이터를 클라이언트 사이드에서만 불러오고 싶을 때 사용합니다.
+    ```javascript
+    const { data } = await useFetch('/api/users', { server: false })
+    ```
 
 ---
 

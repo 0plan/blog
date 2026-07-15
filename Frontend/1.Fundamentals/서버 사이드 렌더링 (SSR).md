@@ -10,6 +10,26 @@
 
 3. **페이지 전환**: 이후 페이지 전환이 필요할 때, 클라이언트는 AJAX 요청을 통해 필요한 데이터를 서버에서 가져오고, 이를 바탕으로 페이지를 업데이트할 수 있습니다.
 
+아래는 초기 요청부터 하이드레이션, 이후 페이지 전환까지의 흐름을 나타낸 다이어그램입니다.
+
+```mermaid
+sequenceDiagram
+    participant User as 사용자
+    participant Client as 클라이언트(브라우저)
+    participant Server as 서버
+
+    User->>Client: URL 접속
+    Client->>Server: 페이지 요청
+    Server->>Server: 데이터 조회 및 HTML 생성
+    Server-->>Client: 완성된 HTML 응답
+    Client-->>User: 즉시 콘텐츠 표시
+    Client->>Client: JS 다운로드 및 실행 (Hydration)
+    User->>Client: 페이지 전환 요청
+    Client->>Server: AJAX 요청 (데이터만)
+    Server-->>Client: JSON 데이터 응답
+    Client->>Client: 화면 갱신
+```
+
 ### 장점
 
 1. **빠른 초기 로드**: 서버에서 생성된 HTML을 클라이언트가 즉시 렌더링할 수 있기 때문에, 사용자에게 빠른 초기 로드 경험을 제공합니다.
@@ -31,6 +51,24 @@
 - **콘텐츠 중심의 웹사이트**: 블로그, 뉴스 사이트, 전자상거래 웹사이트 등에서 사용됩니다. 이러한 사이트들은 SEO와 초기 로드 성능이 중요합니다.
 - **대시보드 애플리케이션**: 서버에서 데이터를 동적으로 렌더링해야 하는 대시보드에서 SSR이 효과적일 수 있습니다.
 - **사회적 미디어 공유**: 링크가 소셜 미디어에 공유될 때 미리보기 정보를 정확하게 제공하기 위해 SSR을 사용합니다.
+
+### SSR과 CSR의 차이
+
+같은 요청을 처리할 때 SSR과 CSR(Client-Side Rendering)은 HTML을 언제, 어디서 완성하는지가 다릅니다.
+
+```mermaid
+flowchart LR
+    subgraph SSR["SSR 방식"]
+        A1[요청] --> A2[서버: HTML 생성]
+        A2 --> A3[완성된 HTML 응답]
+        A3 --> A4[화면 즉시 표시]
+    end
+    subgraph CSR["CSR 방식"]
+        B1[요청] --> B2[빈 HTML + JS 번들 응답]
+        B2 --> B3[브라우저: JS 실행 후 렌더링]
+        B3 --> B4[화면 표시]
+    end
+```
 
 ### 결론
 

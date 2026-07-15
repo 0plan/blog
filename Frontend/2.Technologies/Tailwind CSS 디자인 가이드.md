@@ -11,6 +11,23 @@
 *   **기존 방식:** `.btn-primary` 클래스를 만들고 CSS 파일에 10줄의 코드를 작성.
 *   **Tailwind 방식:** `class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"`
 
+두 방식의 작업 흐름을 비교하면 차이가 더 명확해집니다.
+
+```mermaid
+flowchart LR
+    subgraph 전통적_CSS["전통적인 CSS 방식"]
+        A1[클래스 이름 고민] --> A2[CSS 파일 작성]
+        A2 --> A3[HTML에 클래스 연결]
+        A3 --> A4[브라우저 확인]
+        A4 -->|파일 왕복| A1
+    end
+
+    subgraph Tailwind["Tailwind 방식"]
+        B1[HTML class에 유틸리티 나열] --> B2[브라우저 즉시 확인]
+        B2 -->|같은 파일에서 수정| B1
+    end
+```
+
 ---
 
 ## 2. 주요 장점
@@ -43,6 +60,17 @@
 ## 4. 왜 테일윈드일까?
 
 처음에는 클래스가 너무 길어져서 가독성이 나빠 보일 수 있습니다. 하지만 **컴포넌트 중심 개발(React, Vue 등)** 환경에서는 스타일이 입혀진 태그 자체가 컴포넌트로 분리되므로, 실제 개발 생산성은 비약적으로 향상됩니다.
+
+```jsx
+// 긴 유틸리티 클래스도 컴포넌트로 한 번만 분리하면 재사용이 쉬워집니다.
+function PrimaryButton({ children }) {
+  return (
+    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      {children}
+    </button>
+  );
+}
+```
 
 ---
 

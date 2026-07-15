@@ -10,6 +10,23 @@
 
 Astro는 이를 해결하기 위해 **서버에서 모든 컴포넌트를 미리 렌더링하고, 브라우저에는 순수 HTML만 보냅니다.** 자바스크립트는 꼭 필요한 경우에만 선택적으로 포함됩니다.
 
+기존 SPA 프레임워크와 Astro의 렌더링 흐름을 비교하면 다음과 같습니다.
+
+```mermaid
+flowchart LR
+    subgraph 전통적_SPA["전통적 SPA (React/Vue)"]
+        A1[서버: HTML 생성] --> A2[브라우저: 전체 JS 번들 다운로드]
+        A2 --> A3[브라우저: 페이지 전체 하이드레이션]
+        A3 --> A4[상호작용 가능]
+    end
+
+    subgraph Astro["Astro"]
+        B1[서버: 컴포넌트 미리 렌더링] --> B2[브라우저: 순수 HTML 전송]
+        B2 --> B3[필요한 컴포넌트만 선택적 JS 로드]
+        B3 --> B4[상호작용 가능]
+    end
+```
+
 ---
 
 ## 2. 아일랜드 아키텍처 (Islands Architecture)
@@ -21,6 +38,22 @@ Astro의 가장 혁신적인 기능은 **아일랜드 아키텍처**입니다. �
 
 이 방식 덕분에 페이지의 90%가 정적이라면, 브라우저는 오직 10%의 자바스크립트만 로드하면 됩니다.
 
+한 페이지 안에서 정적 영역과 아일랜드(동적 영역)가 어떻게 공존하는지 나타내면 다음과 같습니다.
+
+```mermaid
+flowchart TD
+    Page[페이지 전체] --> Header[헤더 - 정적 HTML]
+    Page --> Content[본문 콘텐츠 - 정적 HTML]
+    Page --> Search["검색창 - Island, JS 포함"]
+    Page --> Cart["장바구니 - Island, JS 포함"]
+    Page --> DarkMode["다크모드 스위치 - Island, JS 포함"]
+    Page --> Footer[푸터 - 정적 HTML]
+
+    style Search fill:#4a90d9,color:#fff
+    style Cart fill:#4a90d9,color:#fff
+    style DarkMode fill:#4a90d9,color:#fff
+```
+
 ---
 
 ## 3. BYOF (Bring Your Own Framework)
@@ -31,7 +64,23 @@ Astro의 또 다른 강점은 **프레임워크에 구애받지 않는다**는 �
 *   복잡한 폼 입력은 **React**로 구현
 *   가벼운 인터랙션은 **Vue**나 **Svelte**로 구현
 
-이를 통해 팀원들이 각자 익숙한 도구를 사용하면서도 최고의 성능을 내는 웹사이트를 만들 수 있습니다.
+이를 통해 팀원들이 각자 익숙한 도구를 사용하면서도 최고의 성능을 내는 웹사이트를 만들 수 있습니다. 예를 들어 `.astro` 파일 안에서는 이렇게 다른 프레임워크의 컴포넌트를 그대로 가져다 쓸 수 있습니다.
+
+```astro
+---
+import ReactSearchBox from '../components/ReactSearchBox.jsx';
+import VueDarkModeToggle from '../components/VueDarkModeToggle.vue';
+---
+
+<html>
+  <body>
+    <h1>제품 목록</h1>
+    <!-- client:load 등 지시어로 언제 하이드레이션할지 명시 -->
+    <ReactSearchBox client:load />
+    <VueDarkModeToggle client:idle />
+  </body>
+</html>
+```
 
 ---
 

@@ -16,6 +16,25 @@ Nuxt.js의 가장 강력한 무기는 페이지별로 최적의 렌더링 방식
 *   **장점:** 압도적인 로딩 속도와 보안.
 *   **단점:** 데이터가 변경되면 다시 빌드해야 합니다. (블로그에 적합)
 
+SSR과 SSG는 HTML이 "언제" 만들어지는지가 가장 큰 차이입니다.
+
+```mermaid
+sequenceDiagram
+    participant U as 사용자
+    participant S as 서버
+    participant B as 빌드 시점
+
+    Note over B: SSG - 배포 전에 미리 생성
+    B->>B: 모든 페이지 HTML 생성
+    U->>S: 요청
+    S-->>U: 미리 만들어둔 HTML 즉시 응답
+
+    Note over U,S: SSR - 요청마다 새로 생성
+    U->>S: 요청
+    S->>S: 페이지 HTML 실시간 생성
+    S-->>U: 생성된 HTML 응답
+```
+
 ---
 
 ## 2. 하이브리드 렌더링 (Hybrid Rendering)
@@ -31,6 +50,17 @@ export default defineNuxtConfig({
     '/admin/**': { ssr: false },      // 관리자 페이지는 클라이언트에서만 (SPA)
   }
 })
+```
+
+경로별로 서로 다른 렌더링 전략이 적용되는 흐름은 다음과 같습니다.
+
+```mermaid
+flowchart LR
+    R["요청 경로"] --> A{"routeRules 매칭"}
+    A -->|"/"| SSG["prerender: true<br/>빌드 시 미리 생성 (SSG)"]
+    A -->|"/blog/**"| ISR["isr: 3600<br/>1시간마다 재생성 (ISR)"]
+    A -->|"/admin/**"| SPA["ssr: false<br/>클라이언트 렌더링 (SPA)"]
+    A -->|"그 외"| SSR["기본값<br/>요청마다 서버 렌더링 (SSR)"]
 ```
 
 ---

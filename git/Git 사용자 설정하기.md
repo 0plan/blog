@@ -13,6 +13,16 @@ git config --global user.email "youremail@example.com"
 
 이 명령어는 `~/.gitconfig` 파일에 설정을 저장합니다.
 
+Git 설정은 적용 범위에 따라 system, global, local 세 단계로 나뉘며, 더 좁은 범위의 설정이 더 넓은 범위의 설정을 덮어씁니다.
+
+설정 범위별 우선순위 (아래로 갈수록 우선 적용됨)
+```mermaid
+flowchart TD
+    A["--system\n(모든 사용자, /etc/gitconfig)"] --> B["--global\n(현재 사용자, ~/.gitconfig)"]
+    B --> C["--local\n(현재 저장소, .git/config)"]
+    C --> D["최종 적용되는 설정"]
+```
+
 ## 저장소별 사용자 설정
 
 특정 프로젝트에 대해 다른 사용자 정보를 사용하려면:
@@ -34,6 +44,12 @@ git config user.email
 ```
 
 전역 설정을 확인하려면 `--global` 옵션을 추가합니다.
+
+어떤 설정 파일에서 값이 적용됐는지 함께 보고 싶다면 `--show-origin` 옵션을 사용합니다:
+
+```bash
+git config --show-origin user.name
+```
 
 ## 주의사항
 

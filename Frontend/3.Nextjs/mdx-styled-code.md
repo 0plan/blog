@@ -2,6 +2,18 @@
 
 Next.js에서 MDX를 사용할 때, 기본 코드 블록은 밋밋한 텍스트로 표시됩니다. 이를 VS Code처럼 예쁜 하이라이팅과 기능을 갖춘 코드 블록으로 변환하는 방법을 알아봅니다.
 
+MDX 파일이 실제 HTML로 렌더링되기까지의 처리 흐름은 다음과 같습니다.
+
+```mermaid
+flowchart LR
+    A[".mdx 파일"] --> B["remark 파서<br/>(Markdown → AST)"]
+    B --> C["remark-gfm<br/>표, 체크리스트 등 GFM 문법 처리"]
+    C --> D["rehype 변환<br/>(AST → HTML AST)"]
+    D --> E["rehype-pretty-code<br/>(Shiki 기반 하이라이팅)"]
+    E --> F["최종 HTML<br/>(data-* 속성 포함)"]
+    F --> G["CSS 스타일링<br/>(Tailwind)"]
+```
+
 ---
 
 ## 1. 필수 플러그인 설치

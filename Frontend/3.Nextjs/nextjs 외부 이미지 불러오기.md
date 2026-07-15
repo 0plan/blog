@@ -8,6 +8,28 @@ Next.js의 `next/image`는 이미지를 자동으로 리사이징하고 최적�
 
 사용자가 입력한 악의적인 URL을 통해 우리 서버의 리소스를 낭비하거나, 이미지 최적화 서버를 공격하는 것을 방지하기 위함입니다. 따라서 허용된 도메인(Hostname)만 이미지를 불러올 수 있도록 화이트리스트를 관리해야 합니다.
 
+아래는 `<Image>` 요청이 들어왔을 때 Next.js 이미지 옵티마이저가 `remotePatterns` 화이트리스트로 도메인을 검증하는 흐름입니다.
+
+```mermaid
+sequenceDiagram
+    participant User as 브라우저
+    participant Optimizer as Next.js 이미지 옵티마이저
+    participant List as remotePatterns 화이트리스트
+    participant External as 외부 이미지 서버
+
+    User->>Optimizer: <Image src="https://.../x.jpg" />
+    Optimizer->>List: hostname 검증
+    alt 허용된 도메인
+        List-->>Optimizer: 통과
+        Optimizer->>External: 이미지 요청
+        External-->>Optimizer: 원본 이미지 응답
+        Optimizer-->>User: 리사이징/최적화된 이미지 반환
+    else 허용되지 않은 도메인
+        List-->>Optimizer: 차단
+        Optimizer-->>User: Error: Invalid src prop
+    end
+```
+
 ---
 
 ## 2. remotePatterns 설정 (next.config.js)
@@ -80,6 +102,20 @@ export default function RemoteImage({ src, alt }: Props) {
 
 *   **Error: Invalid src prop:** `next.config.js`에 도메인을 등록하지 않았을 때 발생합니다. 설정을 수정한 후에는 반드시 **서버를 재시작**해야 적용됩니다.
 *   **이미지 깨짐:** 외부 서버에서 `Referer` 체크를 하거나 이미지가 존재하지 않는 경우입니다. 이럴 때는 `onError` 핸들러를 통해 기본(Fallback) 이미지를 보여주도록 구현하세요.
+
+문제 상황별로 원인을 좁혀가는 순서는 아래와 같습니다.
+
+```mermaid
+flowchart TD
+    A[이미지가 표시되지 않음] --> B{콘솔에 Invalid src prop 에러?}
+    B -- Yes --> C[next.config.js에 hostname/remotePatterns 등록]
+    C --> D[개발 서버 재시작]
+    B -- No --> E{이미지가 깨진 아이콘으로 보임?}
+    E -- Yes --> F{외부 서버가 Referer/Hotlink 체크?}
+    F -- Yes --> G[onError 핸들러로 fallback 이미지 처리]
+    F -- No --> H[이미지 URL 및 파일 존재 여부 확인]
+    E -- No --> I[sizes / placeholder 설정값 점검]
+```
 
 ---
 

@@ -11,6 +11,16 @@
 *   **정적 타입 시스템:** 코드를 실행하기 전(컴파일 타임)에 에러를 잡아냅니다.
 *   **컴파일 과정:** 브라우저는 타입스크립트를 직접 읽지 못하므로, `tsc` 명령어를 통해 일반 자바스크립트로 변환하는 과정이 필요합니다.
 
+타입스크립트 코드가 실제로 브라우저에서 실행되기까지의 흐름은 다음과 같습니다.
+
+```mermaid
+flowchart LR
+    A[".ts 파일 작성"] --> B["tsc 컴파일러\n(타입 검사)"]
+    B -- "타입 에러 발생" --> C["컴파일 중단\n에러 리포트"]
+    B -- "타입 검사 통과" --> D[".js 파일 생성"]
+    D --> E["브라우저 / Node.js\n에서 실행"]
+```
+
 ---
 
 ## 2. 주요 문법 기초
@@ -102,6 +112,33 @@ interface SuperDuck extends Flyable, Swimmable {
 }
 ```
 
+위 두 가지 상속 형태를 구조로 표현하면 다음과 같습니다.
+
+```mermaid
+classDiagram
+    BasicUser <|-- PremiumUser
+    class BasicUser {
+        +id: string
+        +name: string
+    }
+    class PremiumUser {
+        +membershipLevel: number
+        +discountRate: number
+    }
+
+    Flyable <|-- SuperDuck
+    Swimmable <|-- SuperDuck
+    class Flyable {
+        +fly()
+    }
+    class Swimmable {
+        +swim()
+    }
+    class SuperDuck {
+        +quack()
+    }
+```
+
 ### **③ 속성 재정의 (Overriding) 주의사항**
 상속받은 속성의 타입을 변경할 수 있지만, 반드시 **부모 타입과 호환**되어야 합니다.
 ```typescript
@@ -149,6 +186,25 @@ interface InputProps extends BaseComponent {
 ```
 이렇게 설계하면 모든 컴포넌트가 `id`와 `onClick`을 가져야 함을 강제할 수 있어 관리가 매우 쉬워집니다.
 
+```mermaid
+classDiagram
+    BaseComponent <|-- ButtonProps
+    BaseComponent <|-- InputProps
+    class BaseComponent {
+        +id: string
+        +className?: string
+        +onClick()
+    }
+    class ButtonProps {
+        +label: string
+        +color: blue or red
+    }
+    class InputProps {
+        +value: string
+        +placeholder: string
+    }
+```
+
 ---
 
 ## 6. 실무 선택 가이드 (Best Practice)
@@ -160,7 +216,7 @@ interface InputProps extends BaseComponent {
 
 ---
 
-## 6. 왜 사용해야 할까? (장점)
+## 7. 왜 사용해야 할까? (장점)
 ...
 
 1.  **에러 예방:** 함수에 잘못된 인자를 넘기거나 오타를 내면 에러 메시지가 즉시 뜹니다.
@@ -169,6 +225,6 @@ interface InputProps extends BaseComponent {
 
 ---
 
-## 4. 결론
+## 8. 결론
 
 타입스크립트를 처음 배울 때는 타입을 정의하는 과정이 번거롭게 느껴질 수 있습니다. 하지만 프로젝트 규모가 커질수록 타입스크립트가 잡아주는 버그 한두 개가 수 시간의 디버깅 시간을 아껴준다는 것을 체감하게 될 것입니다. 지금 바로 `npx tsc --init`으로 시작해 보세요!

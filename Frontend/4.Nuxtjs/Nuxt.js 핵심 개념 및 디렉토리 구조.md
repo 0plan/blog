@@ -11,6 +11,26 @@ Nuxt의 가장 큰 특징 중 하나는 `import`문을 생략할 수 있다는 �
 *   **Composables:** `composables/` 폴더의 함수 자동 임포트.
 *   **Vue & Nuxt API:** `ref`, `computed`, `useFetch` 등 필수 API 자동 임포트.
 
+예를 들어 일반 Vue 프로젝트라면 아래처럼 매번 `import`를 작성해야 하지만,
+
+```js
+import { ref, computed } from 'vue'
+import MyButton from '@/components/MyButton.vue'
+```
+
+Nuxt에서는 별도의 `import` 없이 바로 사용할 수 있습니다.
+
+```vue
+<script setup>
+const count = ref(0)
+const doubled = computed(() => count.value * 2)
+</script>
+
+<template>
+  <MyButton @click="count++">클릭 수: {{ doubled }}</MyButton>
+</template>
+```
+
 ---
 
 ## 2. 필수 디렉토리 역할
@@ -24,12 +44,40 @@ Nuxt의 가장 큰 특징 중 하나는 `import`문을 생략할 수 있다는 �
 | **`assets/`** | 빌드 도구(Vite)가 처리해야 하는 스타일, 이미지 파일들. |
 | **`public/`** | 로봇 파일(robots.txt), 파비콘 등 정적 파일을 직접 서빙합니다. |
 
+디렉토리 구조를 트리로 표현하면 다음과 같습니다.
+
+```mermaid
+graph TD
+    Root["프로젝트 루트"] --> Pages["pages/<br/>파일 기반 라우팅"]
+    Root --> Components["components/<br/>UI 컴포넌트"]
+    Root --> Composables["composables/<br/>공통 로직"]
+    Root --> Server["server/<br/>Nitro API 엔진"]
+    Root --> Assets["assets/<br/>Vite가 처리하는 리소스"]
+    Root --> Public["public/<br/>정적 파일 직접 서빙"]
+    Root --> AppVue["app.vue<br/>엔트리 포인트"]
+
+    Pages --> IndexVue["index.vue → '/'"]
+    Server --> ApiDir["api/ → REST 엔드포인트"]
+```
+
 ---
 
 ## 3. App.vue vs Pages
 
 *   **`app.vue`:** 애플리케이션의 엔트리 포인트(최상위)입니다. 모든 페이지에서 공통으로 보일 레이아웃이나 설정(Naive UI의 Config Provider 등)을 넣기에 적합합니다.
 *   **`<NuxtPage />`:** `pages/` 폴더의 내용이 렌더링되는 위치를 지정하는 컴포넌트입니다.
+
+`app.vue`와 `pages/`의 관계를 그림으로 보면 다음과 같습니다.
+
+```mermaid
+graph TD
+    Browser["브라우저 요청"] --> AppVue["app.vue (엔트리 포인트)"]
+    AppVue --> Layout["공통 레이아웃 / 전역 설정<br/>(예: Config Provider)"]
+    Layout --> NuxtPage["&lt;NuxtPage /&gt;"]
+    NuxtPage --> PageA["pages/index.vue"]
+    NuxtPage --> PageB["pages/about.vue"]
+    NuxtPage --> PageC["pages/posts/[id].vue"]
+```
 
 ---
 

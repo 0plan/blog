@@ -11,6 +11,27 @@
 *   **Resource Server:** 구글, 카카오 등 정보를 가진 서버.
 *   **Authorization Server:** 인증을 담당하고 Access Token을 발급하는 서버.
 
+각 역할자가 어떻게 상호작용하는지 인가 코드(Authorization Code) 방식의 흐름으로 살펴보면 다음과 같습니다.
+
+```mermaid
+sequenceDiagram
+    participant U as Resource Owner (사용자)
+    participant C as Client (우리 서비스)
+    participant A as Authorization Server (구글/카카오)
+    participant R as Resource Server (구글/카카오)
+
+    U->>C: 소셜 로그인 버튼 클릭
+    C->>A: 인증 요청 (client_id, redirect_uri, scope)
+    A->>U: 로그인 및 동의 화면 표시
+    U->>A: 로그인 및 권한 동의
+    A-->>C: Authorization Code 반환 (redirect_uri로)
+    C->>A: Access Token 요청 (code, client_secret)
+    A-->>C: Access Token 발급
+    C->>R: Access Token으로 사용자 정보 요청
+    R-->>C: 사용자 프로필/이메일 반환
+    C-->>U: 우리 서비스 로그인 완료 (세션/JWT 발급)
+```
+
 ---
 
 ## 2. Spring Boot OAuth2 Client 설정
@@ -26,7 +47,9 @@
 ```
 
 ### **② 설정 (application.yml)**
-구글 개발자 콘솔에서 발급받은 ID와 Secret을 입력합니다.
+구글 개발자 콘솔(Google Cloud Console)의 'API 및 서비스 > 사용자 인증 정보'에서 OAuth 클라이언트 ID를 생성하고, 발급받은 ID와 Secret을 입력합니다.
+
+<!-- TODO: 실제 스크린샷 추가 필요 (예: 구글 클라우드 콘솔 OAuth 클라이언트 ID 발급 화면) -->
 
 ```yaml
 spring:
@@ -58,6 +81,19 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         // 3. 권한 부여 후 유저 객체 반환
     }
 }
+```
+
+`loadUser()` 내부의 판단 로직을 순서도로 표현하면 다음과 같습니다.
+
+```mermaid
+flowchart TD
+    A[loadUser 호출] --> B[구글/카카오로부터 사용자 정보 조회]
+    B --> C{우리 DB에 동일 이메일 존재?}
+    C -- 아니오 --> D[신규 회원으로 자동 가입 처리]
+    C -- 예 --> E[기존 회원 정보 업데이트]
+    D --> F[권한(ROLE) 부여]
+    E --> F
+    F --> G[OAuth2User 객체 반환]
 ```
 
 ---
