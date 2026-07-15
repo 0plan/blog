@@ -18,6 +18,35 @@ Java의 각 버전은 벤더(Oracle, Red Hat, Eclipse 등)에 따라 지원 기�
 
 > **Tip:** 신규 프로젝트라면 최소 **Java 17** 이상을 선택하는 것이 보안 및 성능 면에서 유리하며, 최신 기능을 위해 **Java 21**이나 **Java 25**를 고려해 보세요.
 
+각 LTS 버전의 지원 구간을 시각화하면 다음과 같습니다.
+
+```mermaid
+gantt
+    title Java LTS 버전별 지원 기간
+    dateFormat YYYY-MM-DD
+    axisFormat %Y
+
+    section Java 8
+    프리미어 지원 : done, j8p, 2014-03-01, 2022-03-01
+    연장 지원 : active, j8e, 2022-03-01, 2030-12-01
+
+    section Java 11
+    프리미어 지원 : done, j11p, 2018-09-01, 2023-09-01
+    연장 지원 : active, j11e, 2023-09-01, 2032-01-01
+
+    section Java 17
+    프리미어 지원 : active, j17p, 2021-09-01, 2026-09-01
+    연장 지원 : j17e, 2026-09-01, 2029-09-01
+
+    section Java 21
+    프리미어 지원 : active, j21p, 2023-09-01, 2028-09-01
+    연장 지원 : j21e, 2028-09-01, 2031-09-01
+
+    section Java 25
+    프리미어 지원 : active, j25p, 2025-09-01, 2030-09-01
+    연장 지원 : j25e, 2030-09-01, 2033-09-01
+```
+
 ---
 
 ## 2. LTS 버전별 주요 변화 (What's New?)

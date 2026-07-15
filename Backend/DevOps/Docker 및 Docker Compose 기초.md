@@ -85,6 +85,18 @@ services:
 *   **실행:** `docker-compose up -d` (백그라운드 실행)
 *   **중지:** `docker-compose down`
 
+**Compose로 구성되는 컨테이너 네트워크 구조**
+```mermaid
+flowchart TB
+    User["사용자 / 클라이언트"] -- "localhost:8080" --> App
+    subgraph Network["Docker Compose 내부 네트워크"]
+        App["app 컨테이너\n(Spring Boot, :8080)"]
+        DB["db 컨테이너\n(MySQL, :3306)"]
+        App -- "jdbc:mysql://db:3306/mydb" --> DB
+    end
+```
+같은 Compose 네트워크에 속한 컨테이너끼리는 서비스 이름(`db`)을 호스트명으로 사용해 서로 통신할 수 있습니다.
+
 ---
 
 ## 4. 왜 Docker를 써야 할까?

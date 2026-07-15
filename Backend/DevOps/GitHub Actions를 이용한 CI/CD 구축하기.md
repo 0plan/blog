@@ -66,11 +66,27 @@ jobs:
 3.  **Docker Push:** 빌드된 이미지를 Docker Hub와 같은 저장소에 업로드합니다.
 4.  **Deploy:** 실제 운영 서버에 접속하여 새 이미지를 내려받고 실행 중인 컨테이너를 교체합니다.
 
+전체 파이프라인 흐름은 다음과 같습니다.
+
+```mermaid
+flowchart LR
+    A[Push to main] --> B[Checkout]
+    B --> C[Build & Test]
+    C -->|실패| X[워크플로우 중단]
+    C -->|성공| D[Docker Build & Push]
+    D --> E[SSH로 운영 서버 접속]
+    E --> F[새 이미지 Pull]
+    F --> G[기존 컨테이너 중지/삭제]
+    G --> H[새 컨테이너 실행]
+```
+
 ---
 
 ## 4. 비밀 정보 관리 (Secrets)
 
 서버의 주소, 비밀번호, SSH 키 등은 외부에 공개되면 안 됩니다.
 *   **GitHub Repository Settings -> Secrets and variables -> Actions**에 가서 위 설정 파일에 적힌 `${{ secrets.XXX }}` 정보를 안전하게 등록해야 합니다.
+
+<!-- TODO: 실제 스크린샷 추가 필요 (예: GitHub Repository Settings > Secrets and variables > Actions 화면에서 New repository secret 등록하는 모습) -->
 
 이제 수동 배포의 번거로움과 실수에서 벗어나, 코드 작성에만 집중할 수 있는 자동화된 환경을 만들어 보세요!

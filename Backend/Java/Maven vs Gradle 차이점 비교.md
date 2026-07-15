@@ -26,6 +26,25 @@
     *   **압도적 성능:** **증분 빌드(Incremental Build)**와 빌드 캐시를 사용하여, 변경된 부분만 빌드합니다. (Maven보다 최대 100배 빠를 때도 있음)
     *   **가독성:** XML보다 훨씬 간결한 문법을 사용하여 설정 파일의 길이가 획기적으로 짧아집니다.
 
+**Maven과 Gradle의 빌드 방식 차이**
+
+```mermaid
+flowchart LR
+    subgraph Maven["Maven 빌드"]
+        direction LR
+        M1[소스 변경] --> M2[전체 의존성 재확인] --> M3[전체 모듈 재빌드] --> M4[빌드 완료]
+    end
+
+    subgraph Gradle["Gradle 빌드"]
+        direction LR
+        G1[소스 변경] --> G2{변경된 태스크만 감지}
+        G2 -->|변경됨| G3[해당 부분만 빌드]
+        G2 -->|변경 없음| G4[빌드 캐시 재사용]
+        G3 --> G5[빌드 완료]
+        G4 --> G5
+    end
+```
+
 ---
 
 ## 3. 핵심 차이점 요약표

@@ -75,6 +75,16 @@ Java 11부터 JDK에 포함되어 있던 Java EE(현재 Jakarta EE) 관련 모�
 
 Java 17은 JDK 내부 패키지를 강력하게 캡슐화합니다. 만약 외부 라이브러리가 리플렉션으로 JDK 내부를 건드린다면 `InaccessibleObjectException`이 발생할 수 있습니다.
 
+```mermaid
+flowchart LR
+    A[라이브러리가 리플렉션으로<br/>JDK 내부 패키지 접근 시도] --> B{모듈이 해당 패키지를<br/>opens 했는가?}
+    B -- "예" --> C[정상 동작]
+    B -- "아니오" --> D[InaccessibleObjectException 발생]
+    D --> E{라이브러리 업데이트 가능?}
+    E -- "예" --> F[최신 버전으로 업데이트]
+    E -- "아니오" --> G["--add-opens JVM 옵션으로<br/>임시 개방 (근본 해결 아님)"]
+```
+
 *   **임시 조치:** 라이브러리 업데이트가 불가능할 경우 JVM 옵션으로 강제 개방할 수 있습니다.
     ```bash
     --add-opens java.base/java.lang=ALL-UNNAMED
