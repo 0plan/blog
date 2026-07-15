@@ -1,5 +1,7 @@
 # Git config 설정 가이드: 사용자 이름(name) 및 이메일(email) 확인 및 변경 방법
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Git-config-설정-가이드-사용자-이름-및-이메일-확인-및-변경-방법-bb2bd5.png?raw=true" alt="Git config 설정 가이드: 사용자 이름(name) 및 이메일(email) 확인 및 변경 방법" />
+
 Git을 처음 설치하거나 새 프로젝트를 시작할 때 가장 먼저 확인해야 할 것이 바로 **사용자 설정(git config)**입니다. 커밋 메시지에 남는 작성자 정보는 협업의 기초이기 때문입니다.
 
 이 포스트에서는 사용자들이 가장 많이 검색하는 **Git 사용자 이름 및 이메일 설정, 확인, 변경 방법**을 정리했습니다.

@@ -1,5 +1,7 @@
 # 올바른 로깅 전략: SLF4J와 Logback으로 운영 환경 모니터링하기
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/올바른-로깅-전략-Logback-SLF4J-8968e2.png?raw=true" alt="올바른 로깅 전략: SLF4J와 Logback으로 운영 환경 모니터링하기" />
+
 `System.out.println()`은 개발 단계에서 편리하지만, 실제 서비스 운영 환경에서는 절대 사용해서는 안 됩니다. **로깅(Logging)**은 서버의 상태를 기록하고 장애 발생 시 원인을 파악하는 가장 강력한 무기입니다.
 
 SLF4J(Simple Logging Facade for Java)는 로깅 API의 "인터페이스" 역할을 하고, Logback은 그 인터페이스를 실제로 구현하는 "엔진"입니다. 코드에서는 항상 SLF4J API(`Logger`, `LoggerFactory`)만 사용하고, 실제 출력 방식은 Logback 설정 파일이 담당하는 구조입니다.

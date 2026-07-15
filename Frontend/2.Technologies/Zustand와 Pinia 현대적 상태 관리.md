@@ -1,5 +1,7 @@
 # 현대 프론트엔드 상태 관리: Zustand와 Pinia로 가볍게 시작하기
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Zustand와-Pinia-현대적-상태-관리-f9bbe9.png?raw=true" alt="현대 프론트엔드 상태 관리: Zustand와 Pinia로 가볍게 시작하기" />
+
 컴포넌트 간에 데이터를 공유하다 보면 'Prop Drilling'(여러 단계를 거쳐 Props를 전달) 문제에 직면하게 됩니다. 이를 해결하기 위해 Redux 같은 거대한 도구를 쓸 수도 있지만, 최근에는 더 단순하고 직관적인 **Zustand**와 **Pinia**가 대세로 자리 잡았습니다.
 
 ---

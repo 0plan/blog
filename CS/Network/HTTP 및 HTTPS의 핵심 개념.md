@@ -1,5 +1,7 @@
 # HTTP와 HTTPS 이해하기: 웹 통신의 근간과 보안
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/HTTP-및-HTTPS의-핵심-개념-eaa352.png?raw=true" alt="HTTP와 HTTPS 이해하기: 웹 통신의 근간과 보안" />
+
 우리가 매일 사용하는 웹 브라우저 주소창의 시작은 항상 `http://` 또는 `https://`입니다. 이 두 프로토콜이 어떻게 데이터를 주고받는지, 그리고 왜 보안(SSL/TLS)이 필수인지 정리합니다.
 
 ---

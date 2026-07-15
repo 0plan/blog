@@ -1,5 +1,7 @@
 # Spring Boot 테스트 코드 작성하기: JUnit 5와 Mockito 활용 가이드
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Spring-Boot-테스트-코드-작성하기-JUnit-5-Mockito-da634b.png?raw=true" alt="Spring Boot 테스트 코드 작성하기: JUnit 5와 Mockito 활용 가이드" />
+
 견고한 애플리케이션의 핵심은 **테스트 코드**입니다. 단순히 "코드가 돌아가는 것"을 넘어, 의도한 대로 동작함을 검증하고 리팩토링의 안전망을 구축하는 방법을 정리합니다. 2026년 기준 가장 많이 쓰이는 **JUnit 5**와 **Mockito**를 중심으로 살펴봅니다.
 
 ---

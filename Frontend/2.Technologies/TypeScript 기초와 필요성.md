@@ -1,5 +1,7 @@
 # TypeScript 기초: 왜 자바스크립트 대신 타입을 써야 할까?
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/TypeScript-기초와-필요성-adbdf2.png?raw=true" alt="TypeScript 기초: 왜 자바스크립트 대신 타입을 써야 할까?" />
+
 현대 프론트엔드 개발에서 **TypeScript(타입스크립트)**는 선택이 아닌 필수 기술이 되었습니다. 자바스크립트의 유연함은 유지하면서, '타입'이라는 안전장치를 더해 런타임 에러를 획기적으로 줄여주는 타입스크립트의 핵심을 정리합니다.
 
 ---

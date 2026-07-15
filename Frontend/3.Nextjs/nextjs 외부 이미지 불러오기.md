@@ -1,5 +1,7 @@
 # Next.js 외부 이미지 불러오기 및 최적화 완벽 가이드
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/nextjs-외부-이미지-불러오기-cdf5dc.png?raw=true" alt="Next.js 외부 이미지 불러오기 및 최적화 완벽 가이드" />
+
 Next.js의 `next/image`는 이미지를 자동으로 리사이징하고 최적화해주는 강력한 컴포넌트입니다. 하지만 외부 URL의 이미지를 불러오려면 보안을 위한 추가 설정이 필요합니다.
 
 ---

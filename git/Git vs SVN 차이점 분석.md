@@ -1,5 +1,7 @@
 # Git vs SVN: 분산형과 중앙집중형 버전 관리 시스템 비교
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Git-vs-SVN-차이점-분석-a44fc9.png?raw=true" alt="Git vs SVN: 분산형과 중앙집중형 버전 관리 시스템 비교" />
+
 소프트웨어 개발에서 버전 관리 시스템(VCS)은 필수적인 도구입니다. 현재는 **Git**이 사실상 표준으로 자리 잡았지만, 여전히 많은 기업에서 **SVN(Subversion)**을 사용하고 있습니다. 이 두 시스템의 근본적인 차이점과 각각의 장단점을 정리해 보겠습니다.
 
 ---

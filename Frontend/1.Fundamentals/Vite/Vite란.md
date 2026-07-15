@@ -1,5 +1,7 @@
 # VITE
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Vite란-044300.png?raw=true" alt="VITE" />
+
 Vite는 현대 웹 개발을 위한 빠르고 경량의 빌드 도구입니다. Evan You(Vue.js의 창시자)가 개발하였으며, 특히 빠른 개발 경험과 최적화된 빌드를 제공하는 데 초점을 맞추고 있습니다. Vite는 ES 모듈을 기반으로 하여, 개발 중에 빠른 핫 리로드와 최적화된 프로덕션 빌드를 지원합니다.
 
 ### 주요 특징

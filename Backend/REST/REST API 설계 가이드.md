@@ -1,5 +1,7 @@
 # REST API 설계 가이드: HTTP 메서드와 상태 코드 (GET, POST, PUT, PATCH, DELETE)
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/REST-API-설계-가이드-6b5ebe.png?raw=true" alt="REST API 설계 가이드: HTTP 메서드와 상태 코드 (GET, POST, PUT, PATCH, DELETE)" />
+
 현대 웹 아키텍처에서 **REST(Representational State Transfer)**는 가장 널리 쓰이는 API 설계 방식입니다. RESTful한 API를 만든다는 것은 단순히 URL을 만드는 것을 넘어, **HTTP 표준 메서드**와 **상태 코드**를 목적에 맞게 사용하는 것을 의미합니다. 2026년 기준 최신 실무 가이드를 정리합니다.
 
 ---

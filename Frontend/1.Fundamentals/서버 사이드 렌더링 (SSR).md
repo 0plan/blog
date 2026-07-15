@@ -1,5 +1,7 @@
 # 서버 사이드 렌더링 (SSR [Server Side Rendering])
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/서버-사이드-렌더링-SSR-0a579e.png?raw=true" alt="서버 사이드 렌더링 (SSR [Server Side Rendering])" />
+
 서버 사이드 렌더링 (SSR, Server-Side Rendering)은 웹 애플리케이션의 콘텐츠가 서버에서 렌더링된 후, 완전한 HTML 페이지가 클라이언트에 전송되는 방식입니다. 이 접근법은 사용자가 웹 페이지에 접근할 때마다 서버가 해당 페이지를 처리하고 생성하는 과정을 포함합니다.
 
 ### 주요 개념

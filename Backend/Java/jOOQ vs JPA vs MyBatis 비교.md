@@ -1,5 +1,7 @@
 # Java 데이터 액세스 기술 비교: JPA vs MyBatis vs jOOQ
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/jOOQ-vs-JPA-vs-MyBatis-비교-ede58c.png?raw=true" alt="Java 데이터 액세스 기술 비교: JPA vs MyBatis vs jOOQ" />
+
 자바 백엔드 개발에서 데이터베이스와 통신하는 방식은 크게 세 가지 흐름으로 나뉩니다. 객체 지향을 극대화한 **JPA**, SQL의 통제권을 중시하는 **MyBatis**, 그리고 타입 안정성과 SQL의 힘을 결합한 **jOOQ**입니다. 2025년 최신 트렌드를 반영하여 이 세 도구를 상세히 비교해 보겠습니다.
 
 ---

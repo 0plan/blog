@@ -1,5 +1,7 @@
 # Maven vs Gradle: 자바 빌드 도구 완벽 비교
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Maven-vs-Gradle-차이점-비교-4bafd9.png?raw=true" alt="Maven vs Gradle: 자바 빌드 도구 완벽 비교" />
+
 자바 애플리케이션을 개발할 때 의존성 관리와 빌드를 담당하는 도구는 필수입니다. 오랫동안 표준으로 쓰인 **Maven**과 현대적인 성능을 자랑하는 **Gradle**의 차이점을 상세히 비교해 보겠습니다.
 
 ---

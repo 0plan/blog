@@ -1,5 +1,7 @@
 # JWT와 토큰 기반 인증 구현하기: 세션 없는 보안 설계
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/JWT와-토큰-기반-인증-구현하기-da1e09.png?raw=true" alt="JWT와 토큰 기반 인증 구현하기: 세션 없는 보안 설계" />
+
 전통적인 세션 방식은 서버의 메모리를 사용하므로 서버 확장 시 관리가 어렵다는 단점이 있습니다. **JWT(JSON Web Token)**는 인증 정보를 토큰 자체에 담아 클라이언트가 보관하게 함으로써, **Stateless(상태 없음)**한 확장이 용이한 구조를 제공합니다.
 
 ---

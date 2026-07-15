@@ -1,5 +1,7 @@
 # Git 사용자 설정하기
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Git-사용자-설정하기-ee6867.png?raw=true" alt="Git 사용자 설정하기" />
+
 Git 사용자 설정은 사용자 이름과 이메일 주소를 설정하는 중요한 단계입니다. 이 정보는 커밋할 때마다 사용되며, 누가 코드를 작성했는지 식별하는 데 도움이 됩니다.
 
 ## 전역 사용자 설정

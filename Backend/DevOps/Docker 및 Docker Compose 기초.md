@@ -1,5 +1,7 @@
 # Docker 및 Docker Compose 기초: 컨테이너로 환경 통합하기
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Docker-및-Docker-Compose-기초-1be449.png?raw=true" alt="Docker 및 Docker Compose 기초: 컨테이너로 환경 통합하기" />
+
 애플리케이션을 개발할 때 가장 흔한 문제는 "내 컴퓨터에서는 잘 되는데 서버에서는 안 된다"는 것입니다. **Docker(도커)**는 애플리케이션과 그 실행 환경을 '컨테이너'라는 단위로 묶어 어디서든 동일하게 실행되도록 보장합니다.
 
 ---

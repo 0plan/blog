@@ -1,5 +1,7 @@
 # Nuxt.js 렌더링 모드 완벽 정리: SSR부터 하이브리드까지
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Nuxt-js-렌더링-모드-및-하이브리드-전략-f1fb9c.png?raw=true" alt="Nuxt.js 렌더링 모드 완벽 정리: SSR부터 하이브리드까지" />
+
 Nuxt.js의 가장 강력한 무기는 페이지별로 최적의 렌더링 방식을 선택할 수 있다는 것입니다. 각 모드의 특징과 2026년 표준인 하이브리드 렌더링에 대해 알아봅니다.
 
 ---

@@ -1,5 +1,7 @@
 # Java 8에서 상위 버전으로의 마이그레이션 가이드 (Workflow)
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Java-8에서-상위-버전으로의-마이그레이션-가이드-c4a7b0.png?raw=true" alt="Java 8에서 상위 버전으로의 마이그레이션 가이드 (Workflow)" />
+
 Java 8에서 11, 17, 혹은 21로 버전을 올리는 것은 단순한 숫자 변경 이상의 의미를 갖습니다. 특히 Java 9에서 도입된 모듈 시스템(Project Jigsaw)과 삭제된 API들로 인해 체계적인 접근이 필요합니다. 성공적인 마이그레이션을 위한 6단계 워크플로우를 정리합니다.
 
 전체 흐름은 아래와 같습니다.

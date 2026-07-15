@@ -1,5 +1,7 @@
 # Nuxt.js 데이터 페칭 가이드: useFetch와 useAsyncData 완벽 이해
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Nuxt-js-데이터-페칭-가이드-useFetch-vs-useAsyncData-51431f.png?raw=true" alt="Nuxt.js 데이터 페칭 가이드: useFetch와 useAsyncData 완벽 이해" />
+
 Nuxt 3에서는 서버 사이드 렌더링(SSR) 환경에 최적화된 데이터 페칭 방식이 필요합니다. 단순히 `axios`를 쓰는 대신, Nuxt 전용 Composable을 써야 하는 이유와 차이점을 정리합니다.
 
 ---

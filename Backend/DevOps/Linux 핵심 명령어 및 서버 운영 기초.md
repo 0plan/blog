@@ -1,5 +1,7 @@
 # Linux 핵심 명령어 및 서버 운영 기초: 개발자를 위한 터미널 가이드
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Linux-핵심-명령어-및-서버-운영-기초-c46081.png?raw=true" alt="Linux 핵심 명령어 및 서버 운영 기초: 개발자를 위한 터미널 가이드" />
+
 우리가 배포하는 대부분의 서버(AWS, Oracle Cloud, 홈서버 등)는 리눅스(Linux) 운영체제에서 동작합니다. 마우스가 없는 검은 화면(터미널)에서 서버를 자유롭게 다루기 위한 필수 지식들을 정리합니다.
 
 ---

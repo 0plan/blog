@@ -1,5 +1,7 @@
 # 주요 통신 프로토콜 비교: HTTP, WebSocket, MQTT
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/주요-통신-프로토콜-비교-HTTP-WebSocket-MQTT-69dea5.png?raw=true" alt="주요 통신 프로토콜 비교: HTTP, WebSocket, MQTT" />
+
 현대적인 애플리케이션은 단순히 웹 페이지를 보여주는 것을 넘어 실시간 채팅, 주식 시세 업데이트, 스마트홈 기기 제어 등 다양한 통신 방식을 요구합니다. 각 상황에 최적화된 3대 프로토콜을 비교해 보겠습니다.
 
 ---

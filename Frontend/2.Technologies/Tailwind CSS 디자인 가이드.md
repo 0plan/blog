@@ -1,5 +1,7 @@
 # Tailwind CSS: Utility-First로 디자인 생산성 극대화하기
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Tailwind-CSS-디자인-가이드-c63a65.png?raw=true" alt="Tailwind CSS: Utility-First로 디자인 생산성 극대화하기" />
+
 전통적인 CSS 방식은 클래스 이름을 고민하고 파일 사이를 왔다 갔다 하는 시간이 많이 걸립니다. **Tailwind CSS**는 미리 정의된 유틸리티 클래스를 HTML에 바로 입혀, 디자인 시스템을 가장 빠르게 구축하게 해주는 프레임워크입니다.
 
 ---

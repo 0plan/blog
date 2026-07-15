@@ -1,5 +1,7 @@
 # 프론트엔드 개발 환경의 핵심: ESLint, Prettier, Babel 이해하기
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/ESLint-Prettier-Babel-완벽-가이드-8c36b0.png?raw=true" alt="프론트엔드 개발 환경의 핵심: ESLint, Prettier, Babel 이해하기" />
+
 프론트엔드 프로젝트를 시작할 때 가장 먼저 마주치는 도구들이 있습니다. 바로 **ESLint, Prettier, Babel**입니다. 이 도구들이 각각 어떤 역할을 하는지, 그리고 왜 함께 사용해야 하는지 정리해 보겠습니다.
 
 ---

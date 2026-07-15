@@ -1,5 +1,7 @@
 # MDX 코드 블록 스타일링: rehype-pretty-code와 remark-gfm 가이드
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/mdx-styled-code-a0f1ff.png?raw=true" alt="MDX 코드 블록 스타일링: rehype-pretty-code와 remark-gfm 가이드" />
+
 Next.js에서 MDX를 사용할 때, 기본 코드 블록은 밋밋한 텍스트로 표시됩니다. 이를 VS Code처럼 예쁜 하이라이팅과 기능을 갖춘 코드 블록으로 변환하는 방법을 알아봅니다.
 
 MDX 파일이 실제 HTML로 렌더링되기까지의 처리 흐름은 다음과 같습니다.

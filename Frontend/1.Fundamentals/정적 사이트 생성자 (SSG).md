@@ -1,5 +1,7 @@
 # 정적 사이트 생성 (SSG [Static Site Generator])
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/정적-사이트-생성자-SSG-d71914.png?raw=true" alt="정적 사이트 생성 (SSG [Static Site Generator])" />
+
 정적 사이트 생성(SSG, Static Site Generation)은 웹 페이지가 빌드 타임에 미리 렌더링되어 정적 HTML 파일로 생성되는 방식입니다. 사용자가 요청할 때마다 서버에서 동적으로 페이지를 생성하는 것이 아니라, 미리 생성된 HTML 파일을 제공하여 성능을 극대화합니다.
 
 빌드 타임과 요청 타임의 역할이 어떻게 분리되는지는 아래 흐름도로 보면 이해하기 쉽습니다.

@@ -1,5 +1,7 @@
 # Astro: 성능을 위한 차세대 프론트엔드 프레임워크
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Astro란-무엇인가-5705aa.png?raw=true" alt="Astro: 성능을 위한 차세대 프론트엔드 프레임워크" />
+
 최근 웹 개발 생태계에서 가장 주목받는 도구 중 하나는 **Astro**입니다. Astro는 기존의 React나 Vue와 같은 SPA(Single Page Application) 중심의 프레임워크와는 근본적으로 다른 접근 방식을 취합니다.
 
 ---

@@ -1,5 +1,7 @@
 # OAuth 2.0 소셜 로그인 연동하기: 구글, 카카오로 시작하는 간편 인증
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/OAuth-2-0-소셜-로그인-연동하기-083da8.png?raw=true" alt="OAuth 2.0 소셜 로그인 연동하기: 구글, 카카오로 시작하는 간편 인증" />
+
 복잡한 회원가입 절차는 사용자 이탈의 주된 원인입니다. **OAuth 2.0**을 이용하면 사용자가 이미 가입한 구글, 카카오, 네이버 계정을 통해 안전하고 빠르게 우리 서비스에 로그인하게 할 수 있습니다.
 
 ---

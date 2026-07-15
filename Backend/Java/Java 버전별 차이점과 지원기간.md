@@ -1,5 +1,7 @@
 # Java 버전별 주요 특징 및 지원 기간 (LTS 중심)
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Java-버전별-차이점과-지원기간-5da520.png?raw=true" alt="Java 버전별 주요 특징 및 지원 기간 (LTS 중심)" />
+
 Java는 현재 2년 주기로 LTS(Long-Term Support) 버전을 출시하며, 현대적인 프로그래밍 언어로 지속적으로 진화하고 있습니다. 이 글에서는 실무에서 주로 사용되는 LTS 버전들의 차이점과 지원 로드맵을 정리합니다.
 
 ---

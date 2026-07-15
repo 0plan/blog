@@ -1,5 +1,7 @@
 # Clean Architecture와 디자인 패턴: 지속 가능한 코드 설계
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Clean-Architecture-디자인-패턴-기초-28b449.png?raw=true" alt="Clean Architecture와 디자인 패턴: 지속 가능한 코드 설계" />
+
 프로그램은 만드는 것보다 유지보수하는 것이 훨씬 어렵습니다. **클린 아키텍처(Clean Architecture)**와 **디자인 패턴**은 시간이 지나도 코드가 썩지 않고, 요구사항 변경에 유연하게 대처할 수 있는 구조를 제안합니다.
 
 ---

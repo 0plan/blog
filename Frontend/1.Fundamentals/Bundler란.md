@@ -1,5 +1,7 @@
 # Bundler
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Bundler란-b825e8.png?raw=true" alt="Bundler" />
+
 Frontend Bundler는 웹 애플리케이션의 여러 자산(HTML, CSS, JavaScript 파일 등)을 하나의 파일 또는 몇 개의 파일로 묶어주는 도구입니다. 이러한 과정을 통해 웹 애플리케이션의 로드 속도를 개선하고, 코드 관리를 쉽게 할 수 있습니다.
 
 **번들링 과정 예시**

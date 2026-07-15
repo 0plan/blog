@@ -1,5 +1,7 @@
 # 클라이언트 사이드 렌더링 (CSR [Client Side Rendering])
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/클라이언트-사이드-렌더링-CSR-5b9498.png?raw=true" alt="클라이언트 사이드 렌더링 (CSR [Client Side Rendering])" />
+
 클라이언트 사이드 렌더링 (CSR, Client-Side Rendering)은 웹 애플리케이션의 콘텐츠가 주로 클라이언트(브라우저)에서 렌더링되는 방식입니다. 초기 로드 시 서버로부터 HTML 파일을 받고, 이후의 모든 콘텐츠는 JavaScript를 통해 동적으로 로드되고 생성됩니다.
 
 ### 주요 개념

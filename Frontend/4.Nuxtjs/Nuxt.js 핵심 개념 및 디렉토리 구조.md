@@ -1,5 +1,7 @@
 # Nuxt.js 핵심 개념: 자동 임포트와 디렉토리 구조 이해하기
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/Nuxt-js-핵심-개념-및-디렉토리-구조-f42122.png?raw=true" alt="Nuxt.js 핵심 개념: 자동 임포트와 디렉토리 구조 이해하기" />
+
 Nuxt.js는 "설정보다 관습(Convention over Configuration)"을 중시하는 프레임워크입니다. 정해진 폴더 구조를 따르는 것만으로도 수많은 복잡한 설정을 자동으로 처리해 줍니다.
 
 ---

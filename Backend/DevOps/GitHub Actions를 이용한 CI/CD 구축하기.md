@@ -1,5 +1,7 @@
 # GitHub Actions를 이용한 CI/CD 구축하기: 배포 자동화의 기초
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/post-cards/CD-구축하기-8dcc5e.png?raw=true" alt="GitHub Actions를 이용한 CI/CD 구축하기: 배포 자동화의 기초" />
+
 개발자가 코드를 `Push`하면 자동으로 테스트를 실행하고 서버에 배포까지 해준다면 어떨까요? **GitHub Actions**는 이 과정을 자동화하는 **CI/CD(지속적 통합/지속적 제공)** 도구입니다. 
 
 ---
