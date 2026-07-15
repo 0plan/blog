@@ -18,8 +18,8 @@ Git 설정은 적용 범위에 따라 system, global, local 세 단계로 나뉘
 설정 범위별 우선순위 (아래로 갈수록 우선 적용됨)
 ```mermaid
 flowchart TD
-    A["--system\n(모든 사용자, /etc/gitconfig)"] --> B["--global\n(현재 사용자, ~/.gitconfig)"]
-    B --> C["--local\n(현재 저장소, .git/config)"]
+    A["--system<br/>(모든 사용자, /etc/gitconfig)"] --> B["--global<br/>(현재 사용자, ~/.gitconfig)"]
+    B --> C["--local<br/>(현재 저장소, .git/config)"]
     C --> D["최종 적용되는 설정"]
 ```
 
