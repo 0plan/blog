@@ -1,0 +1,6 @@
+{
+  "remaining": 3,
+  "active": true,
+  "updated": "2026-07-15",
+  "_comment": "무료패스를 사용할 때마다 remaining 값을 1씩 줄여주세요. 0이 되면 'AI/Claude 사용 가이드' 포스트의 REFERRAL-START ~ REFERRAL-END 구간을 삭제하거나 active를 false로 바꾸면 됩니다. 이 값은 포스트의 shields.io 배지에 자동 반영됩니다."
+}
