@@ -1,5 +1,7 @@
 # Computer Science (CS) & Network 개요
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/cs/cs-hero.png?raw=true" alt="컴퓨터 과학 기초 다지기" />
+
 컴퓨터 과학의 기초가 되는 네트워크, 자료구조, 알고리즘 및 운영체제 관련 지식을 정리합니다.
 
 ## 주요 포스트

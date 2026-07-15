@@ -1,5 +1,7 @@
 # Frontend 개발 개요
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/frontend/frontend-hero.png?raw=true" alt="프론트엔드 개발 가이드" />
+
 현대적인 프론트엔드 개발을 위한 기초 이론부터 프레임워크별 실전 프로젝트까지, 단계별 학습 콘텐츠를 제공합니다.
 
 ---

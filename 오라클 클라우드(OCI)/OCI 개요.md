@@ -1,5 +1,7 @@
 # Oracle Cloud (OCI) 활용 개요
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/oci/oci-hero.png?raw=true" alt="오라클 클라우드 무료 티어 활용" />
+
 오라클 클라우드의 무료 티어 활용 및 서버 운영 팁을 공유합니다.
 
 ## 주요 포스트

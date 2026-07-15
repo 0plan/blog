@@ -1,5 +1,7 @@
 # Backend 개발 개요
 
+<img src="https://github.com/0plan/blog/blob/main/assets/images/backend/backend-hero.png?raw=true" alt="백엔드 개발 가이드" />
+
 백엔드 개발과 관련된 기술 스택, 라이브러리, 그리고 아키텍처 설계를 다룹니다.
 
 ## 주요 포스트
@@ -35,9 +37,11 @@
 - [백엔드 필수 디자인 패턴 가이드](./Architecture/백엔드 필수 디자인 패턴 가이드.md)
 
 ### Database
-- [데이터베이스 종류 및 특징 비교](./Database/데이터베이스 종류 및 특징 비교.md)
-- [데이터베이스 테이블 설계 및 관계 이해하기](./Database/데이터베이스 테이블 설계 및 관계 이해하기.md)
-- [데이터베이스 실전 사용법 및 예제](./Database/데이터베이스 실전 사용법 및 예제.md)
+- [데이터베이스 종류 및 특징 비교](../Database/데이터베이스 종류 및 특징 비교.md)
+- [데이터베이스 테이블 설계 및 관계 이해하기](../Database/데이터베이스 테이블 설계 및 관계 이해하기.md)
+- [데이터베이스 실전 사용법 및 예제](../Database/데이터베이스 실전 사용법 및 예제.md)
+- [PostgreSQL 16에서 17로 업그레이드 가이드](../Database/PostgreSQL/0. PostgreSQL 16에서 17로 업그레이드 가이드.md)
+- [PostgreSQL 17에서 18로 업그레이드 가이드](../Database/PostgreSQL/1. PostgreSQL 17에서 18로 업그레이드 가이드.md)
 
 ### DevOps & Infrastructure
 - [Docker 및 Docker Compose 기초](./DevOps/Docker 및 Docker Compose 기초.md)
