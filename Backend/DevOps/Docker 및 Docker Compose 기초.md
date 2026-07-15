@@ -10,6 +10,16 @@ Docker는 OS 수준의 가상화를 통해 프로세스를 격리된 환경(컨�
 *   **이미지(Image):** 실행에 필요한 코드, 런타임, 설정 등을 담은 읽기 전용 템플릿입니다. (붕어빵 틀)
 *   **컨테이너(Container):** 이미지를 실행한 상태입니다. 격리된 환경에서 독립적으로 동작합니다. (붕어빵)
 
+**이미지와 컨테이너의 관계**
+```mermaid
+flowchart LR
+    A["Dockerfile"] -- "docker build" --> B["Image\n(읽기 전용 템플릿)"]
+    B -- "docker run" --> C1["Container 1"]
+    B -- "docker run" --> C2["Container 2"]
+    B -- "docker run" --> C3["Container 3"]
+```
+하나의 이미지로 여러 개의 독립된 컨테이너를 실행할 수 있습니다.
+
 ---
 
 ## 2. Spring Boot 프로젝트 Dockerfile 작성하기
@@ -28,6 +38,21 @@ FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /app/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+위 Dockerfile은 **멀티 스테이지 빌드**를 사용합니다. 빌드에 필요한 JDK와 소스 코드는 최종 이미지에 포함되지 않고, 실행에 필요한 JRE와 빌드 산출물(jar)만 남기 때문에 이미지 용량이 크게 줄어듭니다.
+
+**멀티 스테이지 빌드 흐름**
+```mermaid
+flowchart LR
+    subgraph Stage1["1단계: build (eclipse-temurin:21-jdk-alpine)"]
+        S1["소스 코드 COPY"] --> S2["./gradlew bootJar 실행"]
+        S2 --> S3["app.jar 생성"]
+    end
+    subgraph Stage2["2단계: 실행 (eclipse-temurin:21-jre-alpine)"]
+        S4["app.jar만 COPY --from=build"] --> S5["ENTRYPOINT로 실행"]
+    end
+    S3 -. "필요한 산출물만 복사" .-> S4
 ```
 
 ---

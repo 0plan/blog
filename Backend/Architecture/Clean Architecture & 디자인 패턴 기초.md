@@ -13,6 +13,36 @@
 *   **Use Cases (애플리케이션 업무 규칙):** 시스템의 동작을 정의합니다.
 *   **Adapters & Frameworks:** 가장 바깥쪽 원. DB, 웹 프레임워크, UI 등은 언제든 교체 가능한 세부 사항으로 취급합니다.
 
+계층 구조와 의존성의 방향을 그림으로 나타내면 다음과 같습니다.
+
+```mermaid
+flowchart TD
+    subgraph Outer["Frameworks & Drivers (가장 바깥)"]
+        Web["Web / UI"]
+        DB["Database"]
+    end
+    subgraph Adapters["Interface Adapters"]
+        Controller["Controller"]
+        Presenter["Presenter"]
+        Gateway["Repository / Gateway"]
+    end
+    subgraph UseCases["Use Cases (애플리케이션 업무 규칙)"]
+        Interactor["Use Case Interactor"]
+    end
+    subgraph Entities["Entities (핵심 업무 규칙)"]
+        Entity["도메인 모델"]
+    end
+
+    Web --> Controller
+    Controller --> Interactor
+    Interactor --> Entity
+    Gateway --> Interactor
+    DB --> Gateway
+    Interactor --> Presenter
+```
+
+의존성 화살표가 항상 안쪽(Entities)을 향하고, 바깥쪽 원(DB, 웹 프레임워크)은 안쪽을 알지 못한다는 점이 핵심입니다.
+
 ---
 
 ## 2. 실무에서 자주 쓰이는 디자인 패턴
@@ -25,8 +55,62 @@
 ### **② 전략 패턴 (Strategy)**
 알고리즘을 클래스화하여 필요에 따라 동적으로 교체합니다. 예를 들어, 결제 수단(카드, 카카오페이, 토스)에 따라 다른 결제 로직을 실행할 때 유용합니다.
 
+```mermaid
+classDiagram
+    class PaymentContext {
+        -PaymentStrategy strategy
+        +pay(amount)
+    }
+    class PaymentStrategy {
+        <<interface>>
+        +pay(amount)
+    }
+    class CardPayment {
+        +pay(amount)
+    }
+    class KakaoPayPayment {
+        +pay(amount)
+    }
+    class TossPayment {
+        +pay(amount)
+    }
+
+    PaymentContext --> PaymentStrategy
+    PaymentStrategy <|.. CardPayment
+    PaymentStrategy <|.. KakaoPayPayment
+    PaymentStrategy <|.. TossPayment
+```
+
+```java
+interface PaymentStrategy {
+    void pay(int amount);
+}
+
+class KakaoPayPayment implements PaymentStrategy {
+    public void pay(int amount) { /* 카카오페이 결제 로직 */ }
+}
+
+// 실행 시점에 전략(결제 수단)만 바꿔 끼우면 된다
+PaymentContext context = new PaymentContext(new KakaoPayPayment());
+context.pay(10000);
+```
+
 ### **③ 빌더 패턴 (Builder)**
 복잡한 객체 생성 과정을 캡슐화합니다. 가독성이 높고 필요한 필드만 선택적으로 설정할 수 있어 자바 개발자에게 필수적인 패턴입니다. (Lombok의 `@Builder`)
+
+```java
+@Builder
+public class Order {
+    private final String productName;
+    private final int quantity;
+    private final String memo; // 선택 필드
+}
+
+Order order = Order.builder()
+    .productName("키보드")
+    .quantity(1)
+    .build(); // memo는 생략 가능
+```
 
 ---
 
