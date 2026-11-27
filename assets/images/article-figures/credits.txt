@@ -1,0 +1,108 @@
+0plan 운영 기록의 그림·화면 출처
+
+각 글의 도식·설명·측정 그래프는 0plan이 그렸다. 수치의 측정 범위와 배경은 해당 글에 적었다. 그림 안의 제품 이름과 로고는 설명하는 제품을 식별하는 데 사용했다.
+
+직접 캡처한 화면
+• auction-filters.webp: 2026-11-27에 공개 공매 목록의 지역·용도 검색 조건을 캡처했다.
+• charger-map-light.webp, charger-map-dark.webp: 같은 날 같은 0plan 충전 지도를 두 테마로 캡처했다. charger-dark-tiles.webp의 비교 그림은 이 화면에서 같은 영역을 발췌했다.
+• 충전 지도 데이터 © OpenStreetMap contributors, ODbL: https://www.openstreetmap.org/copyright
+  지도 타일: OpenStreetMap 한국, https://osm.kr/usage
+  지도 화면과 글에 출처를 함께 표시했다. 빨간 번개는 0plan 충전 지도 아이콘이다.
+
+제품 표식
+• Git: Jason Long, CC BY 3.0. 그림에 맞게 크기를 조정했다.
+  https://git-scm.com/community/logos · https://creativecommons.org/licenses/by/3.0/
+• Fedora: Fedora Project 브랜드 가이드와 상표 이용 조건.
+  https://docs.fedoraproject.org/en-US/project/brand/ · https://docs.fedoraproject.org/en-US/legal/trademarks/
+• Proxmox VE: https://www.proxmox.com/favicon.svg
+• PostgreSQL: https://wiki.postgresql.org/wiki/Logo
+• Coder / code-server: https://github.com/coder/code-server/blob/main/src/browser/media/favicon.svg
+• Herdr: https://herdr.dev/live/icons/herdr.png
+• CachyOS: https://cachyos.org/favicon.svg
+• Tailscale: https://tailscale.com/favicon.svg
+• Samba: https://www.samba.org/samba/style/2010/grey/headerPrint.jpg (인쇄용 머리말에서 로고 부분 발췌)
+• restic: https://github.com/restic/restic/blob/master/doc/logo/logo.png
+• Pangolin: https://github.com/fosrl/pangolin/blob/main/public/logo/pangolin_orange.svg
+• Leaflet: https://leafletjs.com/docs/images/favicon.svg
+• Motion: https://motion.dev/favicon.svg
+• Docker, GitHub, Hibernate, Markdown, Next.js, Oracle, Spring: Devicon v2.18.0의 각 제품 original.svg.
+  https://github.com/devicons/devicon/tree/ff435a0fff0391aefbf70d63a3fe7cfe64f82df0/icons
+
+재배포 고지 원문
+
+Devicon v2.18.0
+https://github.com/devicons/devicon/blob/v2.18.0/LICENSE
+
+The MIT License (MIT)
+
+Copyright (c) 2015 konpa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Coder / code-server
+https://github.com/coder/code-server/blob/main/LICENSE
+
+The MIT License
+
+Copyright (c) 2019 Coder Technologies Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+restic
+https://github.com/restic/restic/blob/master/LICENSE
+
+BSD 2-Clause License
+
+Copyright (c) 2014, Alexander Neumann <alexander@bumpern.de>
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
